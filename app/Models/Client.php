@@ -21,4 +21,14 @@ class Client extends Model
             'type' => ClientType::class,
         ];
     }
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 }
