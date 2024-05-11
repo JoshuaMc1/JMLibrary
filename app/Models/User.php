@@ -48,4 +48,9 @@ class User extends Authenticatable
             'status' => UserStatus::class,
         ];
     }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
