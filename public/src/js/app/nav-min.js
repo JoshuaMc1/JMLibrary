@@ -1,0 +1,1 @@
+const navbarElement=document.querySelector("#navbar");function updateNavbarBackground(){const a=window.scrollY>0;navbarElement.classList.toggle("bg-base-300",!a)}window.addEventListener("scroll",updateNavbarBackground);

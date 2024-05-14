@@ -1,11 +1,17 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\{
+    LanguageController,
+    ThemeController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::post('/language', [LanguageController::class, 'set'])
     ->name('language.set');
+
+Route::post('/theme', [ThemeController::class, 'set'])
+    ->name('theme.set');
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'index')

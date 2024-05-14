@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LanguageController extends Controller
+class ThemeController extends Controller
 {
     public function set(Request $request)
     {
-        $language = $request->input('language', 'en');
+        $theme = $request->input('theme', 'emerald');
 
-        session(['language' => $language]);
+        session(['theme' => $theme]);
 
         return redirect()
             ->back();
