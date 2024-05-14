@@ -1,27 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeController = document.querySelector('#themeController');
-    const themes = ['emerald', 'sunset'];
-
-    themeController.addEventListener('change', (event) => {
-        const theme = event.target.value;
-
-        if (themes.includes(theme)) {
-            setTheme(theme);
-        }
-    });
-
-    const init = () => {
-        if (!localStorage.getItem('theme')) {
-            setTheme('emerald');
-        } else {
-            document.documentElement.setAttribute('data-theme', getTheme());
-            themeController.value = getTheme() === 'sunset' ? 'emerald' : 'sunset';
-        }
-    }
-
-    const getTheme = () => localStorage.getItem('theme');
-
-    const setTheme = (theme) => localStorage.setItem('theme', theme);
+    const theme = document.querySelector('#theme');
+    const currentTheme = document.documentElement.getAttribute('data-theme');
 
     init();
+
+    themeController.addEventListener('change', () => {
+        theme.value = currentTheme === 'emerald' ? 'sunset' : 'emerald';
+
+        themeController.parentElement.parentElement.submit();
+    });
+
+    function init() {
+        (currentTheme === 'emerald') ?
+            themeController.checked = true :
+            themeController.checked = false;
+    }
 });

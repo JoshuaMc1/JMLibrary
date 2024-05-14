@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="emerald">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ session('theme', 'emerald') }}">
 
 <head>
     <meta charset="UTF-8">
@@ -35,6 +35,11 @@
     @vite('resources/js/app.js')
 
     @yield('scripts')
+
+    @auth
+        <script src="{{ asset('src/js/app/nav-min.js') }}" async></script>
+    @endauth
+
     <script src="{{ asset('src/js/app/lang-min.js') }}" async></script>
 </body>
 
