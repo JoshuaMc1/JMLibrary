@@ -1,0 +1,1 @@
+const empty=(t="")=>null==t||""===t;export{empty};

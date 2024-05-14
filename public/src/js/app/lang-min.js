@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelector("#languageSwitch");e.addEventListener("change",(()=>{e.parentElement.submit()}))}));
