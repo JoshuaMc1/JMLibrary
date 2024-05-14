@@ -1,0 +1,1 @@
+const setText=(t,e)=>(t.textContent=e,t),setHTML=(t,e)=>(t.innerHTML=e,t),setAttribute=(t,e,r)=>(t.setAttribute(e,r),t),clearContainers=t=>{t.forEach((t=>{for(;t.firstChild;)t.removeChild(t.firstChild)}))};export{setText,setHTML,setAttribute,clearContainers};
