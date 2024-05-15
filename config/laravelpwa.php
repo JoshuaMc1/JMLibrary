@@ -63,7 +63,7 @@ return [
         ],
         'shortcuts' => [],
         'custom' => [
-            'description' => 'JMLibrary: sistema de gestión para bibliotecas.',
+            'description' => 'Sistema de gestión para bibliotecas.',
             'display_override' => ["window-controls-overlay"],
             "screenshots" => [
                 [
@@ -74,12 +74,21 @@ return [
                     "label" => "Application",
                 ],
                 [
-                    "src" => "/images/screenshots/screenshot.png",
+                    "src" => "/images/screenshots/screenshot-2.png",
                     "sizes" => "1280x720",
                     "type" => "image/png",
+                    "form_factor" => "narrow",
                     "label" => "Application",
                 ]
-            ]
+            ],
+            "related_applications" => [
+                [
+                    "platform" => "web",
+                    "url" => env("APP_URL", "http://localhost"),
+                    "id" => "jmlibrary"
+                ]
+            ],
+            "id" => "/"
         ]
     ]
 ];

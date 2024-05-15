@@ -1,18 +1,16 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
     '/offline',
-    '/css/app.css',
-    '/js/app.js',
     '/src/css/base.css',
     '/src/js/app/theme-min.js',
     '/src/js/app/lang-min.js',
     '/src/js/app/nav-min.js',
     '/src/js/app/auth/app-min.js',
-    '/src/js/app/modules/components/components-min.js',
-    '/src/js/app/modules/components/utils-min.js',
-    '/src/js/app/modules/validations/utils-min.js',
-    '/src/js/app/modules/validations/login-min.js',
-    '/src/js/app/modules/validator/validator-min.js',
+    '/src/js/modules/components/components-min.js',
+    '/src/js/modules/components/utils-min.js',
+    '/src/js/modules/validations/utils-min.js',
+    '/src/js/modules/validations/login-min.js',
+    '/src/js/modules/validator/validator-min.js',
     '/images/icons/icon-72x72.png',
     '/images/icons/icon-96x96.png',
     '/images/icons/icon-128x128.png',
@@ -22,7 +20,9 @@ var filesToCache = [
     '/images/icons/icon-384x384.png',
     '/images/icons/icon-512x512.png',
     '/images/screenshots/screenshot.png',
+    '/images/screenshots/screenshot-2.png',
 ];
+var domain = 'http://127.0.0.1:8000';
 
 // Cache on install
 self.addEventListener("install", event => {
@@ -61,4 +61,65 @@ self.addEventListener("fetch", event => {
                 return caches.match('offline');
             })
     )
+});
+
+// Sync
+self.addEventListener('sync', event => {
+    if (event.tag === 'sync-tag') {
+        event.waitUntil(
+            console.log('Synchronization performed')
+        );
+    }
+});
+
+// Push event for push notifications
+self.addEventListener('push', event => {
+    try {
+        const data = event.data.json();
+
+        if (Notification.permission !== 'granted') {
+            console.log('Permission not granted to send a notification');
+            return;
+        }
+
+        self.registration.showNotification(data.title, {
+            body: data.body,
+            icon: '/images/icons/icon-192x192.png',
+        });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+// Notification click
+self.addEventListener('notificationclick', event => {
+    event.notification.close();
+
+    event.waitUntil(
+        clients.openWindow(domain)
+    );
+});
+
+// Periodic sync
+self.addEventListener('periodicsync', event => {
+    if (event.tag === 'sync-tag') {
+        event.waitUntil(
+            console.log('Synchronization performed')
+        );
+    }
+});
+
+// Message
+self.addEventListener('message', event => {
+    if (event.data.action === 'skipWaiting') {
+        self.skipWaiting();
+    }
+
+    if (event.data.action === 'refresh') {
+        self.clients.matchAll().then(clients => {
+            clients.forEach(client => {
+                client.postMessage({ action: 'skipWaiting' });
+            });
+        });
+    }
 });
