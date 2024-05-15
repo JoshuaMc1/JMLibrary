@@ -49,9 +49,9 @@
                 <li><a>Item 3</a></li>
             </ul>
         </div>
-        <div class="navbar-end gap-2">
+        <div class="navbar-end gap-1">
             <x-theme />
-            <x-language-switch class="bg-base-300" />
+            <x-language-switch class="bg-base-300 select-sm" />
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">

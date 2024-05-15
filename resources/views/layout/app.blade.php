@@ -11,6 +11,7 @@
     <meta name="author" content="Joshua Mclean">
     <meta name="robots" content="@yield('robots', 'index, follow, translate')">
     <title>{{ config('app.name') }} - @yield('title')</title>
+    @laravelPWA
     <script src="{{ asset('src/js/app/theme-min.js') }}" async></script>
     @vite('resources/css/app.css')
     @yield('styles')
